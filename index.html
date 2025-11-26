@@ -1,118 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carrusel con Botones</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrusel con Botones</title>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+        }
 
-    body {
-        font-family: Arial, sans-serif;
-    }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
 
-    /* --- Contenedor del carrusel --- */
-    .carousel {
-        position: relative;
-        width: 100%;
-        height: 80vh;
-        overflow: hidden;
-    }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
 
-    /* --- Slides --- */
-    .slides {
-        display: flex;
-        width: 400%;
-        height: 100%;
-        animation: slideAnimation 20s infinite;
-    }
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
 
-    .slide {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        flex-shrink: 0;
-    }
+        .slide img {
+            width: 100%;
+            display: block;
+        }
 
-    .slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        /* Botón en cada imagen */
+        .slide button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            background: #ff7700;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-    /* --- Botón sobre la imagen --- */
-    .slide button {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 14px 28px;
-        font-size: 18px;
-        background-color: rgba(0, 0, 0, 0.6);
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        /* Flechas */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            background: rgba(0,0,0,0.4);
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            user-select: none;
+        }
 
-    .slide button:hover {
-        background-color: rgba(0, 0, 0, 0.85);
-    }
-
-    /* --- Animación automática --- */
-    @keyframes slideAnimation {
-        0% { transform: translateX(0%); }
-        20% { transform: translateX(0%); }
-
-        25% { transform: translateX(-100%); }
-        45% { transform: translateX(-100%); }
-
-        50% { transform: translateX(-200%); }
-        70% { transform: translateX(-200%); }
-
-        75% { transform: translateX(-300%); }
-        100% { transform: translateX(-300%); }
-    }
-</style>
+        .left { left: 10px; }
+        .right { right: 10px; }
+    </style>
 </head>
 
 <body>
 
-<div class="carousel">
-    <div class="slides">
+    <div class="carousel">
+        <span class="arrow left" onclick="moveSlide(-1)">‹</span>
+        <span class="arrow right" onclick="moveSlide(1)">›</span>
 
-        <!-- Slide 1 -->
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Casa 1">
-            <button onclick="alert('Click en Casa 1')">Ver más</button>
+        <div class="slides">
+            <div class="slide">
+                <img src="img1.jpg" />
+                <button onclick="alert('Diste clic en Imagen 1')">Ver más</button>
+            </div>
+
+            <div class="slide">
+                <img src="img2.jpg" />
+                <button onclick="alert('Diste clic en Imagen 2')">Comprar</button>
+            </div>
+
+            <div class="slide">
+                <img src="img3.jpg" />
+                <button onclick="alert('Diste clic en Imagen 3')">Detalles</button>
+            </div>
         </div>
-
-        <!-- Slide 2 -->
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Casa 2">
-            <button onclick="alert('Click en Casa 2')">Ver más</button>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" alt="Casa 3">
-            <button onclick="alert('Click en Casa 3')">Ver más</button>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6" alt="Casa 4">
-            <button onclick="alert('Click en Casa 4')">Ver más</button>
-        </div>
-
     </div>
-</div>
 
-</body>
-</html>
+    <script>
+        let index = 0;
+
+        function moveSlide(n) {
+            const slides = document.querySelector(".slides");
+            const total = document.querySelectorAll(".slide").length;
