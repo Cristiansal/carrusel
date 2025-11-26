@@ -26,16 +26,37 @@
     }
 
     .carousel-slide {
+      position: relative;   /* Necesario para colocar el botón encima */
       min-width: 100vw;
     }
 
     .carousel-slide img {
       width: 100vw;
-      height: 65vh; /* ajusta la altura si quieres */
+      height: 65vh;
       object-fit: cover;
       display: block;
     }
 
+    /* --- Botón pequeño dentro de cada imagen --- */
+    .slide-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 14px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .slide-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    /* Flechas */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -66,18 +87,22 @@
 
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa1/1600/900" alt="Casa 1">
+        <button class="slide-btn">Ver más</button>
       </div>
 
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa2/1600/900" alt="Casa 2">
+        <button class="slide-btn">Ver más</button>
       </div>
 
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa3/1600/900" alt="Casa 3">
+        <button class="slide-btn">Ver más</button>
       </div>
 
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa4/1600/900" alt="Casa 4">
+        <button class="slide-btn">Ver más</button>
       </div>
 
     </div>
@@ -100,12 +125,6 @@
       index = (index - 1 + slides.length) % slides.length;
       track.style.transform = `translateX(-${index * 100}vw)`;
     });
-
-    // Opcional: autoplay cada 4 s
-    // setInterval(() => {
-    //   index = (index + 1) % slides.length;
-    //   track.style.transform = `translateX(-${index * 100}vw)`;
-    // }, 4000);
   </script>
 
 </body>
