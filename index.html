@@ -26,7 +26,7 @@
     }
 
     .carousel-slide {
-      position: relative;   /* Necesario para colocar el botón encima */
+      position: relative;
       min-width: 100vw;
     }
 
@@ -34,26 +34,33 @@
       width: 100vw;
       height: 65vh;
       object-fit: cover;
-      display: block;
     }
 
-    /* --- Botón pequeño dentro de cada imagen --- */
-    .slide-btn {
+    /* --- Botón flotante de WhatsApp --- */
+    .whatsapp-btn {
       position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 8px 14px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
+      right: 25px;
+      bottom: 25px;
+      width: 55px;
+      height: 55px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
       cursor: pointer;
+      transition: transform 0.2s;
+      z-index: 20;
     }
 
-    .slide-btn:hover {
-      background: rgba(0,0,0,0.8);
+    .whatsapp-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .whatsapp-btn img {
+      width: 28px;
+      height: 28px;
     }
 
     /* Flechas */
@@ -85,24 +92,44 @@
   <div class="carousel-container">
     <div class="carousel-track">
 
+      <!-- Slide 1 -->
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa1/1600/900" alt="Casa 1">
-        <button class="slide-btn">Ver más</button>
+        <a class="whatsapp-btn" 
+           href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20esta%20casa"
+           target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        </a>
       </div>
 
+      <!-- Slide 2 -->
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa2/1600/900" alt="Casa 2">
-        <button class="slide-btn">Ver más</button>
+        <a class="whatsapp-btn" 
+           href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20esta%20casa"
+           target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        </a>
       </div>
 
+      <!-- Slide 3 -->
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa3/1600/900" alt="Casa 3">
-        <button class="slide-btn">Ver más</button>
+        <a class="whatsapp-btn" 
+           href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20esta%20casa"
+           target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        </a>
       </div>
 
+      <!-- Slide 4 -->
       <div class="carousel-slide">
         <img src="https://picsum.photos/seed/casa4/1600/900" alt="Casa 4">
-        <button class="slide-btn">Ver más</button>
+        <a class="whatsapp-btn" 
+           href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20esta%20casa"
+           target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        </a>
       </div>
 
     </div>
