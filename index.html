@@ -1,112 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrusel Prefabricadas</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carrusel con Botones</title>
 
-  <style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
+        font-family: Arial, sans-serif;
     }
 
-    .carousel-container {
-      position: relative;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      overflow: hidden;
+    /* --- Contenedor del carrusel --- */
+    .carousel {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        overflow: hidden;
     }
 
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
+    /* --- Slides --- */
+    .slides {
+        display: flex;
+        width: 400%;
+        height: 100%;
+        animation: slideAnimation 20s infinite;
     }
 
-    .carousel-slide {
-      min-width: 100vw;
+    .slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
     }
 
-    .carousel-slide img {
-      width: 100vw;
-      height: 65vh; /* ajusta la altura si quieres */
-      object-fit: cover;
-      display: block;
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      cursor: pointer;
-      font-size: 28px;
-      border-radius: 6px;
-      z-index: 10;
+    /* --- Botón sobre la imagen --- */
+    .slide button {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 14px 28px;
+        font-size: 18px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
     }
 
-    .prev { left: 20px; }
-    .next { right: 20px; }
-
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.7);
+    .slide button:hover {
+        background-color: rgba(0, 0, 0, 0.85);
     }
-  </style>
+
+    /* --- Animación automática --- */
+    @keyframes slideAnimation {
+        0% { transform: translateX(0%); }
+        20% { transform: translateX(0%); }
+
+        25% { transform: translateX(-100%); }
+        45% { transform: translateX(-100%); }
+
+        50% { transform: translateX(-200%); }
+        70% { transform: translateX(-200%); }
+
+        75% { transform: translateX(-300%); }
+        100% { transform: translateX(-300%); }
+    }
+</style>
 </head>
 
 <body>
 
-  <div class="carousel-container">
-    <div class="carousel-track">
+<div class="carousel">
+    <div class="slides">
 
-      <div class="carousel-slide">
-        <img src="https://picsum.photos/seed/casa1/1600/900" alt="Casa 1">
-      </div>
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Casa 1">
+            <button onclick="alert('Click en Casa 1')">Ver más</button>
+        </div>
 
-      <div class="carousel-slide">
-        <img src="https://picsum.photos/seed/casa2/1600/900" alt="Casa 2">
-      </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Casa 2">
+            <button onclick="alert('Click en Casa 2')">Ver más</button>
+        </div>
 
-      <div class="carousel-slide">
-        <img src="https://picsum.photos/seed/casa3/1600/900" alt="Casa 3">
-      </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" alt="Casa 3">
+            <button onclick="alert('Click en Casa 3')">Ver más</button>
+        </div>
 
-      <div class="carousel-slide">
-        <img src="https://picsum.photos/seed/casa4/1600/900" alt="Casa 4">
-      </div>
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6" alt="Casa 4">
+            <button onclick="alert('Click en Casa 4')">Ver más</button>
+        </div>
 
     </div>
-
-    <button class="carousel-btn prev">&#10094;</button>
-    <button class="carousel-btn next">&#10095;</button>
-  </div>
-
-  <script>
-    const track = document.querySelector(".carousel-track");
-    const slides = Array.from(track.children);
-    let index = 0;
-
-    document.querySelector(".next").addEventListener("click", () => {
-      index = (index + 1) % slides.length;
-      track.style.transform = `translateX(-${index * 100}vw)`;
-    });
-
-    document.querySelector(".prev").addEventListener("click", () => {
-      index = (index - 1 + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}vw)`;
-    });
-
-    // Opcional: autoplay cada 4 s
-    // setInterval(() => {
-    //   index = (index + 1) % slides.length;
-    //   track.style.transform = `translateX(-${index * 100}vw)`;
-    // }, 4000);
-  </script>
+</div>
 
 </body>
 </html>
