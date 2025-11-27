@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio estilo Dvele</title>
+  <title>Sue - Inicio moderno</title>
 
   <style>
     * {
@@ -19,42 +19,37 @@
       overflow-x: hidden;
     }
 
-    /* HERO – versión compatible con Google Sites */
+    /* ---------------------------------- */
+    /* HERO (Responsivo) */
+    /* ---------------------------------- */
     .hero {
       width: 100%;
-      padding-top: 40%; /* Mantiene proporción sin vh */
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')
-        center/cover no-repeat;
-      position: relative;
+      min-height: 60vh;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       text-align: center;
-      width: 90%;
-      max-width: 900px;
+      padding: 40px 20px;
     }
 
     .hero h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       color: white;
       text-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+      max-width: 800px;
     }
 
     .hero p {
-      margin-top: 15px;
-      font-size: 1.2rem;
+      margin-top: 20px;
+      font-size: 1.3rem;
       color: #eee;
       text-shadow: 0px 2px 6px rgba(0,0,0,0.4);
     }
 
+    /* ---------------------------------- */
     /* SECCIÓN PROCESO */
+    /* ---------------------------------- */
     .proceso {
       padding: 60px 20px;
       max-width: 1200px;
@@ -64,34 +59,39 @@
 
     .proceso h2 {
       font-size: 2.4rem;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
 
     .step {
       padding: 20px;
-      border-radius: 14px;
+      border-radius: 16px;
       background: #f5f5f5;
       box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
     }
 
     .step img {
       width: 100%;
+      height: auto;
       border-radius: 12px;
-      margin-bottom: 15px;
+      max-height: 220px;
+      object-fit: cover;
     }
 
     .step h3 {
       font-size: 1.3rem;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
+    /* ---------------------------------- */
     /* BENEFICIOS */
+    /* ---------------------------------- */
     .beneficios {
       background: #fafafa;
       padding: 60px 20px;
@@ -99,14 +99,14 @@
     }
 
     .beneficios h2 {
-      font-size: 2.4rem;
-      margin-bottom: 40px;
+      font-size: 2.3rem;
+      margin-bottom: 30px;
     }
 
     .beneficios-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
       max-width: 1100px;
       margin: auto;
     }
@@ -118,16 +118,18 @@
       box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
     }
 
+    /* ---------------------------------- */
     /* CTA */
+    /* ---------------------------------- */
     .cta {
-      padding: 80px 20px;
+      padding: 70px 20px;
       text-align: center;
       background: #111;
       color: white;
     }
 
     .cta h2 {
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
     }
 
@@ -135,7 +137,7 @@
       background: #ffffff;
       color: black;
       padding: 14px 30px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       border: none;
       border-radius: 30px;
       cursor: pointer;
@@ -145,14 +147,74 @@
     .cta button:hover {
       background: #ddd;
     }
+
+    /* ---------------------------------- */
+    /* RESPONSIVE PARA CELULAR */
+    /* ---------------------------------- */
+    @media (max-width: 768px) {
+
+      .hero {
+        min-height: 50vh;
+        padding: 30px 15px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .proceso h2,
+      .beneficios h2 {
+        font-size: 1.9rem;
+      }
+
+      .step img {
+        max-height: 170px;
+      }
+
+      .cta h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .hero {
+        min-height: 45vh;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .steps {
+        gap: 20px;
+      }
+
+      .step h3 {
+        font-size: 1.1rem;
+      }
+
+      .cta h2 {
+        font-size: 1.8rem;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- HERO PRINCIPAL compatible con Google Sites -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>CASSA modernas, saludables y eficientes para un futuro sostenible</h1>
+    <div>
+      <h1>C_D modernas, saludables y eficientes para un futuro sostenible</h1>
       <p>Inspirado en la estética premium y minimalista de Dvele</p>
     </div>
   </section>
@@ -160,55 +222,5 @@
   <!-- PROCESO -->
   <section class="proceso">
     <h2>Cómo funciona el proceso</h2>
-    <div class="steps">
-      <div class="step">
-        <img src="https://images.unsplash.com/photo-1580584126903-c17d41830450" />
-        <h3>1. Elige tu diseño</h3>
-        <p>Selecciona el modelo que mejor encaje con tu estilo de vida.</p>
-      </div>
 
-      <div class="step">
-        <img src="https://images.unsplash.com/photo-1581091870627-3b5c35c7a01a" />
-        <h3>2. Personaliza los detalles</h3>
-        <p>Materiales, acabados, distribución y más.</p>
-      </div>
-
-      <div class="step">
-        <img src="https://images.unsplash.com/photo-1600585154154-98d1b9f66cd0" />
-        <h3>3. Vive tu nuevo hogar</h3>
-        <p>Disfruta una casa moderna, cómoda y energéticamente eficiente.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFICIOS -->
-  <section class="beneficios">
-    <h2>Beneficios de vivir en una casa moderna</h2>
-    <div class="beneficios-grid">
-
-      <div class="beneficio">
-        <h3>Eficiencia energética</h3>
-        <p>Materiales y tecnología que reducen tu consumo hasta un 70%.</p>
-      </div>
-
-      <div class="beneficio">
-        <h3>Ambiente saludable</h3>
-        <p>Control de calidad del aire y espacios diseñados para tu bienestar.</p>
-      </div>
-
-      <div class="beneficio">
-        <h3>Construcción rápida</h3>
-        <p>Fabricación optimizada que acelera la entrega final.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="cta">
-    <h2>Descubre tu próxima casa</h2>
-    <button>Contáctanos</button>
-  </section>
-
-</body>
-</html>
+    <div clas
