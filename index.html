@@ -1,211 +1,206 @@
-<style>
-    /* ----------------------------------------------------------------- */
-    /* --- CONFIGURACIÓN PARA GOOGLE SITES (Evita 100vw) --- */
-    /* ----------------------------------------------------------------- */
-    
-    /* El contenedor ahora ocupa el 100% del marco de Google Sites */
-    .carousel-container {
-        position: relative;
-        width: 100%; 
-        overflow: hidden;
-        /* IMPORTANTE: Define la altura del carrusel aquí. Ajusta 65vh a un valor fijo (ej: 400px) si el texto no se ve bien. */
-        height: 400px; 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio estilo Dvele</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
-    .carousel-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-        width: 400%; /* Si tienes 4 slides, debe ser 400% */
-        height: 100%;
+    body {
+      background: #ffffff;
+      color: #222;
     }
 
-    .carousel-slide {
-        position: relative;
-        min-width: 25%; /* 100% dividido por 4 slides = 25% */
-        height: 100%;
-        box-sizing: border-box; 
-        /* CLAVE: Si quieres un fondo de color en el carrusel (no transparente al fondo del site), defínelo aquí: */
-        background-color: #4A4A4A; /* Gris Concreto de tu paleta */
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    /* ----------------------------------------------------------------- */
-    /* --- ESTILOS DE TEXTO Y BOTONES (Usando tu Paleta) --- */
-    /* ----------------------------------------------------------------- */
-    
-    .slide-text {
-        position: absolute;
-        top: 50%; /* Centrado verticalmente */
-        left: 50%; /* Centrado horizontalmente */
-        transform: translate(-50%, -50%); /* Ajuste de centrado perfecto */
-        color: white;
-        text-align: center;
-        width: 80%; /* Ancho máximo del texto */
-        z-index: 10;
-        
-        /* Fondo para mejor legibilidad */
-        background: rgba(34, 34, 34, 0.6); /* Negro semitransparente */
-        padding: 20px;
-        border-radius: 8px;
+    .hero h1 {
+      font-size: 4rem;
+      color: white;
+      text-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+      max-width: 900px;
     }
 
-    .slide-text h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: bold;
-        color: #FFC72C; /* Amarillo Acento de tu paleta */
-        font-size: 32px;
-        margin-top: 0;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-    
-    .slide-text p {
-        font-family: 'Roboto', sans-serif;
-        color: #FFFFFF;
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 0;
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      color: #eee;
+      text-shadow: 0px 2px 6px rgba(0,0,0,0.4);
     }
 
-    /* --- Botón flotante de WhatsApp --- */
-    .whatsapp-btn {
-        position: absolute;
-        right: 25px;
-        bottom: 25px;
-        width: 55px;
-        height: 55px;
-        background: #25D366; /* Verde WhatsApp */
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-        cursor: pointer;
-        transition: transform 0.2s;
-        z-index: 20;
+    /* SECCIÓN PROCESO */
+    .proceso {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
     }
 
-    .whatsapp-btn:hover {
-        transform: scale(1.08);
+    .proceso h2 {
+      font-size: 2.8rem;
+      margin-bottom: 40px;
     }
 
-    .whatsapp-btn img {
-        width: 28px;
-        height: 28px;
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
     }
 
-    /* Flechas */
-    .carousel-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.4);
-        color: white;
-        border: none;
-        padding: 12px 18px;
-        cursor: pointer;
-        font-size: 28px;
-        border-radius: 6px;
-        z-index: 10;
-        transition: background 0.3s;
+    .step {
+      padding: 20px;
+      border-radius: 16px;
+      background: #f5f5f5;
+      box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
     }
 
-    .prev { left: 20px; }
-    .next { right: 20px; }
-
-    .carousel-btn:hover {
-        background: rgba(0,0,0,0.7);
+    .step img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
     }
 
-</style>
+    .step h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
 
-<div class="carousel-container">
-    <div class="carousel-track">
+    /* BENEFICIOS */
+    .beneficios {
+      background: #fafafa;
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-        <div class="carousel-slide">
-            <div class="slide-text">
-                <h2>NOGAL</h2>
-                <p>En Sué, construimos de forma rápida, segura y de calidad. Unimos la experiencia de la construcción tradicional con sistemas modulares y prefabricados que hacen los proyectos más eficientes y accesibles.</p>
-            </div>
-            <a class="whatsapp-btn" 
-                href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20el%20modelo%20NOGAL"
-                target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            </a>
-        </div>
+    .beneficios h2 {
+      font-size: 2.6rem;
+      margin-bottom: 40px;
+    }
 
-        <div class="carousel-slide">
-            <div class="slide-text">
-                <h2>LÍNEA DE DISEÑOS</h2>
-                <p>Explora nuestra galería de proyectos diseñados con principios bioclimáticos para asegurar el máximo confort y ahorro energético en cualquier clima.</p>
-            </div>
-            <a class="whatsapp-btn" 
-                href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20los%20diseños"
-                target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            </a>
-        </div>
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-        <div class="carousel-slide">
-            <div class="slide-text">
-                <h2>LÍNEA DE MATERIALES</h2>
-                <p>Descubre los sistemas constructivos que garantizan durabilidad, solidez y un aislamiento superior, haciendo tu hogar más eficiente y sostenible.</p>
-            </div>
-            <a class="whatsapp-btn" 
-                href="https://wa.me/573001234567?text=Hola,%20quiero%20más%20información%20sobre%20los%20materiales"
-                target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            </a>
-        </div>
+    .beneficio {
+      padding: 20px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
+    }
 
-        <div class="carousel-slide">
-            <div class="slide-text">
-                <h2>CONSTRUYE TU SUEÑO</h2>
-                <p>¿Tienes un proyecto en mente? Permítenos mostrarte cómo nuestros sistemas modulares pueden hacerlo realidad de forma rápida y eficiente.</p>
-            </div>
-            <a class="whatsapp-btn" 
-                href="https://wa.me/573001234567?text=Hola,%20quiero%20empezar%20mi%20proyecto"
-                target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            </a>
-        </div>
+    /* CTA */
+    .cta {
+      padding: 100px 20px;
+      text-align: center;
+      background: #111;
+      color: white;
+    }
+
+    .cta h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .cta button {
+      background: #ffffff;
+      color: black;
+      padding: 14px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cta button:hover {
+      background: #ddd;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO PRINCIPAL -->
+  <section class="hero">
+    <div>
+      <h1>Casas modernas, saludables y eficientes para un futuro sostenible</h1>
+      <p>Inspirado en la estética premium y minimalista de Dvele</p>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso">
+    <h2>Cómo funciona el proceso</h2>
+    <div class="steps">
+
+      <div class="step">
+        <img src="https://images.unsplash.com/photo-1580584126903-c17d41830450" />
+        <h3>1. Elige tu diseño</h3>
+        <p>Selecciona el modelo que mejor encaje con tu estilo de vida.</p>
+      </div>
+
+      <div class="step">
+        <img src="https://images.unsplash.com/photo-1581091870627-3b5c35c7a01a" />
+        <h3>2. Personaliza los detalles</h3>
+        <p>Materiales, acabados, distribución y más.</p>
+      </div>
+
+      <div class="step">
+        <img src="https://images.unsplash.com/photo-1600585154154-98d1b9f66cd0" />
+        <h3>3. Vive tu nuevo hogar</h3>
+        <p>Disfruta una casa moderna, cómoda y energéticamente eficiente.</p>
+      </div>
 
     </div>
+  </section>
 
-    <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-    <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
-</div>
+  <!-- BENEFICIOS -->
+  <section class="beneficios">
+    <h2>Beneficios de vivir en una casa moderna</h2>
+    <div class="beneficios-grid">
 
-<script>
-    const track = document.querySelector(".carousel-track");
-    const slides = Array.from(track.children);
-    const totalSlides = slides.length;
-    let index = 0;
+      <div class="beneficio">
+        <h3>Eficiencia energética</h3>
+        <p>Materiales y tecnología que reducen tu consumo hasta un 70%.</p>
+      </div>
 
-    // Función para manejar la navegación y la animación
-    function updateSlide() {
-        // Mueve el track horizontalmente
-        track.style.transform = `translateX(-${index * 100 / totalSlides}%)`;
-    }
+      <div class="beneficio">
+        <h3>Ambiente saludable</h3>
+        <p>Control de calidad del aire y espacios diseñados para tu bienestar.</p>
+      </div>
 
-    function changeSlide(direction) {
-        index = (index + direction + totalSlides) % totalSlides;
-        updateSlide();
-    }
+      <div class="beneficio">
+        <h3>Construcción rápida</h3>
+        <p>Fabricación optimizada que acelera la entrega final.</p>
+      </div>
 
-    // Navegación con los botones
-    document.querySelector(".next").addEventListener("click", () => {
-        changeSlide(1);
-    });
+    </div>
+  </section>
 
-    document.querySelector(".prev").addEventListener("click", () => {
-        changeSlide(-1);
-    });
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <h2>Descubre tu próxima casa</h2>
+    <button>Contáctanos</button>
+  </section>
 
-    // Función de Auto-Play (Opcional, pero recomendado para banners)
-    setInterval(() => {
-        changeSlide(1);
-    }, 5000); // Cambia de slide cada 5 segundos
-
-    // Inicializa el carrusel en el primer slide
-    updateSlide();
-</script>
+</body>
+</html>
