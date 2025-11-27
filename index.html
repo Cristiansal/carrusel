@@ -1,226 +1,573 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sue - Inicio moderno</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUÉ – House where your ideas fit!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-    body {
-      background: #ffffff;
-      color: #222;
-      overflow-x: hidden;
-    }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    /* ---------------------------------- */
-    /* HERO (Responsivo) */
-    /* ---------------------------------- */
-    .hero {
-      width: 100%;
-      min-height: 60vh;
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hero h1 {
-      font-size: 3rem;
-      color: white;
-      text-shadow: 0px 2px 10px rgba(0,0,0,0.4);
-      max-width: 800px;
-    }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000;
+        }
 
-    .hero p {
-      margin-top: 20px;
-      font-size: 1.3rem;
-      color: #eee;
-      text-shadow: 0px 2px 6px rgba(0,0,0,0.4);
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    /* ---------------------------------- */
-    /* SECCIÓN PROCESO */
-    /* ---------------------------------- */
-    .proceso {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    .proceso h2 {
-      font-size: 2.4rem;
-      margin-bottom: 30px;
-    }
+        .nav-links a:hover {
+            color: #666;
+        }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://dvffu2vkcvqdn.cloudfront.net/hero_oodhouse_poster.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
 
-    .step {
-      padding: 20px;
-      border-radius: 16px;
-      background: #f5f5f5;
-      box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
-    }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
 
-    .step img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      max-height: 220px;
-      object-fit: cover;
-    }
+        .hero p {
+            font-size: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
 
-    .step h3 {
-      font-size: 1.3rem;
-      margin-top: 10px;
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    /* ---------------------------------- */
-    /* BENEFICIOS */
-    /* ---------------------------------- */
-    .beneficios {
-      background: #fafafa;
-      padding: 60px 20px;
-      text-align: center;
-    }
+        /* Business Opportunity Section */
+        .business-opportunity {
+            padding: 6rem 2rem;
+            background: #f8f8f8;
+        }
 
-    .beneficios h2 {
-      font-size: 2.3rem;
-      margin-bottom: 30px;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .beneficios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: auto;
-    }
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-    .beneficio {
-      padding: 20px;
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
-    }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
 
-    /* ---------------------------------- */
-    /* CTA */
-    /* ---------------------------------- */
-    .cta {
-      padding: 70px 20px;
-      text-align: center;
-      background: #111;
-      color: white;
-    }
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
 
-    .cta h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
 
-    .cta button {
-      background: #ffffff;
-      color: black;
-      padding: 14px 30px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .stat-card h3 {
+            font-size: 3rem;
+            color: #2c5f2d;
+            margin-bottom: 0.5rem;
+        }
 
-    .cta button:hover {
-      background: #ddd;
-    }
+        .stat-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
 
-    /* ---------------------------------- */
-    /* RESPONSIVE PARA CELULAR */
-    /* ---------------------------------- */
-    @media (max-width: 768px) {
+        .description {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
 
-      .hero {
-        min-height: 50vh;
-        padding: 30px 15px;
-      }
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: white;
+        }
 
-      .hero h1 {
-        font-size: 2rem;
-      }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-      .hero p {
-        font-size: 1rem;
-      }
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 400px;
+        }
 
-      .proceso h2,
-      .beneficios h2 {
-        font-size: 1.9rem;
-      }
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
 
-      .step img {
-        max-height: 170px;
-      }
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
 
-      .cta h2 {
-        font-size: 2rem;
-      }
-    }
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem;
+            color: white;
+        }
 
-    @media (max-width: 480px) {
+        .product-overlay h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
 
-      .hero {
-        min-height: 45vh;
-      }
+        .product-overlay p {
+            font-size: 1rem;
+        }
 
-      .hero h1 {
-        font-size: 1.7rem;
-      }
+        /* Why SUÉ Section */
+        .why-ood {
+            padding: 6rem 2rem;
+            background: #f8f8f8;
+        }
 
-      .hero p {
-        font-size: 0.95rem;
-      }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
 
-      .steps {
-        gap: 20px;
-      }
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
 
-      .step h3 {
-        font-size: 1.1rem;
-      }
+        .feature-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
 
-      .cta h2 {
-        font-size: 1.8rem;
-      }
-    }
+        .feature-content {
+            padding: 2rem;
+        }
 
-  </style>
+        .feature-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c5f2d;
+        }
+
+        .feature-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #2c5f2d;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1a3d1b;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">SUÉ</div>
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#why">Por que SUÉ</a></li>
+                <li><a href="#experiences">Experiencias</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <h1>C_D modernas, saludables y eficientes para un futuro sostenible</h1>
-      <p>Inspirado en la estética premium y minimalista de Dvele</p>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>House where your ideas fit!</h1>
+            <p>Transform your estate into a thriving nature hospitality business</p>
+        </div>
+    </section>
 
-  <!-- PROCESO -->
-  <section class="proceso">
-    <h2>Cómo funciona el proceso</h2>
+    <!-- Business Opportunity -->
+    <section class="business-opportunity">
+        <div class="container">
+            <h2 class="section-title">A business opportunity</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>315€</h3>
+                    <p>Avg. nightly rate</p>
+                </div>
+                <div class="stat-card">
+                    <h3>72%</h3>
+                    <p>Avg. occupancy rate</p>
+                </div>
+                <div class="stat-card">
+                    <h3>>25%</h3>
+                    <p>Avg. ROI</p>
+                </div>
+            </div>
+            <div class="description">
+                <p>Turn your estate into a thriving business. Create experiences and adventures for your guests.</p>
+                <p>People crave for new experiences, a different type of travel to beautiful, hidden places.</p>
+                <a href="#contact" class="cta-button">Start Your Journey</a>
+            </div>
+        </div>
+    </section>
 
-    <div clas
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" alt="Houses">
+                    <div class="product-overlay">
+                        <h3>Houses</h3>
+                        <p>4 models available</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" alt="Offices">
+                    <div class="product-overlay">
+                        <h3>Offices</h3>
+                        <p>2 models available</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-saunas.jpg" alt="Saunas">
+                    <div class="product-overlay">
+                        <h3>Saunas</h3>
+                        <p>3 models available</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" alt="Shells">
+                    <div class="product-overlay">
+                        <h3>Shells</h3>
+                        <p>Available in all models</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" alt="Bespoke">
+                    <div class="product-overlay">
+                        <h3>Bespoke</h3>
+                        <p>Custom-made</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why SUÉ -->
+    <section class="why-ood" id="why">
+        <div class="container">
+            <h2 class="section-title">WHY SUÉ?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/046001738106a1a800a4fa3b70cedc04c8214b5b.jpg" alt="Design">
+                    <div class="feature-content">
+                        <h3>Timeless Design. Unmatched Quality.</h3>
+                        <p>With its timeless Nordic design and full steel frame, our SUÉ Houses are built to stand the test of time. They stand firm in any climate and will keep you or your guests comfortably warm in winter and cool in summer.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/1b063b83cb1de80e29ecb5cde58084434ac9cfde.jpg" alt="Investment">
+                    <div class="feature-content">
+                        <h3>An investment that creates returns</h3>
+                        <p>With one or multiple SUÉ Houses you can offer your guests unique, immersive experiences that will have them come back time and time again. Whether you already own a hospitality business or want to create something from scratch—SUÉ provides everything you need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery/Experiences -->
+    <section class="gallery" id="experiences">
+        <div class="container">
+            <h2 class="section-title">SUÉ Experiences Around the World</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+                From Iceland's volcanoes to Italy's mountains. SUÉ Houses are providing new business opportunities in the hospitality sector.
+            </p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-by-grautaneset-norway-(1).jpeg" alt="Norway">
+                    <div class="gallery-caption">
+                        <p><strong>Tustna, Norway</strong><br>Grautaneset</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/big-monolith-iceland.jpg" alt="Iceland">
+                    <div class="gallery-caption">
+                        <p><strong>Iceland</strong><br>Monolith Experience</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/signature-house-italy-spino-fiorito.jpg" alt="Italy">
+                    <div class="gallery-caption">
+                        <p><strong>Italy</strong><br>Spino Fiorito</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/furu,-norway,-ood-mirror-house.jpg" alt="Norway Mirror">
+                    <div class="gallery-caption">
+                        <p><strong>Furu, Norway</strong><br>Mirror House</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-at-laheranna-estonia-magnus-heinmets.jpg" alt="Estonia">
+                    <div class="gallery-caption">
+                        <p><strong>Laheranna, Estonia</strong><br>Signature House</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-versso.jpg" alt="Versso">
+                    <div class="gallery-caption">
+                        <p><strong>SUÉ Versso</strong><br>Premium Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p><strong>Stay adventurous. Stay SUÉ.</strong></p>
+            <p>You want to have a genuine SUÉ experience? There are SUÉ Stays all over the world serving as the starting points for adventure, nature and memorable experiences while also providing premium comfort.</p>
+            <p style="margin-top: 2rem;">&copy; 2024 SUÉ House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Add animation on scroll for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .product-card, .feature-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
