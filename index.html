@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUÉ – House where your ideas fit!</title>
+    <title>SUÉ – Casas Modulares Prefabricadas</title>
     <style>
         * {
             margin: 0;
@@ -23,10 +23,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
         nav {
@@ -39,35 +40,104 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #000;
+            color: #D4A017;
+            letter-spacing: 3px;
+            cursor: pointer;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
+            font-size: 1.05rem;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #F4C430, #D4A017);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: #666;
+            color: #D4A017;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #D4A017;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Mobile Menu */
+        .nav-links.mobile {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 2rem;
+            gap: 2rem;
+            transition: left 0.3s ease;
+        }
+
+        .nav-links.mobile.active {
+            left: 0;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('https://dvffu2vkcvqdn.cloudfront.net/hero_oodhouse_poster.jpg');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,15 +146,28 @@
             margin-top: 80px;
         }
 
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+        }
+
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 strong {
+            font-weight: bold;
+            color: #F4C430;
         }
 
         .hero p {
             font-size: 1.5rem;
             animation: fadeInUp 1s ease 0.2s backwards;
+            line-height: 1.8;
         }
 
         @keyframes fadeInUp {
@@ -101,7 +184,7 @@
         /* Business Opportunity Section */
         .business-opportunity {
             padding: 6rem 2rem;
-            background: #f8f8f8;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
         }
 
         .container {
@@ -110,8 +193,17 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-align: center;
+            margin-bottom: 1rem;
+            color: #F4C430;
+            font-weight: 300;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ccc;
             margin-bottom: 3rem;
         }
 
@@ -123,34 +215,38 @@
         }
 
         .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: 2px solid #D4A017;
         }
 
         .stat-card:hover {
             transform: translateY(-10px);
+            border-color: #F4C430;
+            box-shadow: 0 15px 40px rgba(244, 196, 48, 0.3);
         }
 
         .stat-card h3 {
-            font-size: 3rem;
-            color: #2c5f2d;
+            font-size: 3.5rem;
+            color: #F4C430;
             margin-bottom: 0.5rem;
+            font-weight: bold;
         }
 
         .stat-card p {
-            color: #666;
+            color: #ccc;
             font-size: 1.1rem;
         }
 
         .description {
             text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #e0e0e0;
             max-width: 800px;
             margin: 0 auto 2rem;
         }
@@ -163,7 +259,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -171,20 +267,21 @@
         .product-card {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 20px;
             cursor: pointer;
-            height: 400px;
+            height: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s ease;
         }
 
         .product-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .product-overlay {
@@ -192,38 +289,59 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2.5rem;
             color: white;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
         }
 
         .product-overlay h3 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
+            font-weight: 300;
         }
 
         .product-overlay p {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: #F4C430;
         }
 
-        /* Why SUÉ Section */
-        .why-ood {
+        /* Why Section */
+        .why-sue {
             padding: 6rem 2rem;
-            background: #f8f8f8;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+        }
+
+        .why-sue .section-title {
+            color: #F4C430;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
         }
 
         .feature-card {
-            background: white;
-            border-radius: 15px;
+            background: rgba(244, 196, 48, 0.05);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 196, 48, 0.2);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(244, 196, 48, 0.1);
+            transform: translateY(-10px);
+            border-color: #F4C430;
         }
 
         .feature-card img {
@@ -233,50 +351,54 @@
         }
 
         .feature-content {
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .feature-content h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
-            color: #2c5f2d;
+            color: #F4C430;
         }
 
         .feature-content p {
-            color: #666;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
+            font-size: 1.1rem;
         }
 
         /* Gallery Section */
         .gallery {
             padding: 6rem 2rem;
-            background: white;
+            background: #f8f9fa;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .gallery-item {
             position: relative;
-            height: 300px;
+            height: 350px;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 15px;
             cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.6s ease;
+            filter: brightness(0.9);
         }
 
         .gallery-item:hover img {
             transform: scale(1.2);
+            filter: brightness(1);
         }
 
         .gallery-caption {
@@ -284,9 +406,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,0.7);
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), rgba(212, 160, 23, 0.8));
             color: white;
-            padding: 1rem;
+            padding: 1.5rem;
             transform: translateY(100%);
             transition: transform 0.3s;
         }
@@ -297,50 +419,83 @@
 
         /* Footer */
         footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
+            border-top: 3px solid #D4A017;
         }
 
         footer p {
             margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            color: #1a1a1a;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(244, 196, 48, 0.4);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(244, 196, 48, 0.6);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links.mobile {
+                display: flex;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero p {
                 font-size: 1.2rem;
             }
 
-            .nav-links {
-                display: none;
-            }
-
             .feature-grid,
             .product-grid {
                 grid-template-columns: 1fr;
             }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
         }
 
-        .cta-button {
-            display: inline-block;
-            background: #2c5f2d;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 2rem;
-            transition: background 0.3s;
-        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
 
-        .cta-button:hover {
-            background: #1a3d1b;
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -349,87 +504,94 @@
     <header>
         <nav>
             <div class="logo">SUÉ</div>
-            <ul class="nav-links">
-                <li><a href="#products">Products</a></li>
-                <li><a href="#why">Por que SUÉ</a></li>
-                <li><a href="#experiences">Experiencias</a></li>
-                <li><a href="#contact">Contacto</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#por-que">Por Qué SUÉ</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div>
-            <h1>House where your ideas fit!</h1>
-            <p>Transform your estate into a thriving nature hospitality business</p>
+        <div class="hero-content">
+            <h1>Construye el futuro con <strong>SUÉ</strong></h1>
+            <p>Casas modulares prefabricadas que transforman tu visión en realidad. Diseño innovador, construcción sostenible, entrega rápida.</p>
         </div>
     </section>
 
     <!-- Business Opportunity -->
     <section class="business-opportunity">
         <div class="container">
-            <h2 class="section-title">A business opportunity</h2>
+            <h2 class="section-title">Una oportunidad de inversión inteligente</h2>
+            <p class="section-subtitle">Las casas modulares prefabricadas representan el futuro de la construcción</p>
             <div class="stats">
                 <div class="stat-card">
                     <h3>315€</h3>
-                    <p>Avg. nightly rate</p>
+                    <p>Tarifa promedio por noche</p>
                 </div>
                 <div class="stat-card">
                     <h3>72%</h3>
-                    <p>Avg. occupancy rate</p>
+                    <p>Tasa de ocupación promedio</p>
                 </div>
                 <div class="stat-card">
                     <h3>>25%</h3>
-                    <p>Avg. ROI</p>
+                    <p>ROI promedio anual</p>
                 </div>
             </div>
             <div class="description">
-                <p>Turn your estate into a thriving business. Create experiences and adventures for your guests.</p>
-                <p>People crave for new experiences, a different type of travel to beautiful, hidden places.</p>
-                <a href="#contact" class="cta-button">Start Your Journey</a>
+                <p>Convierte tu terreno en un negocio próspero. Crea experiencias únicas y genera ingresos pasivos.</p>
+                <p>Las personas buscan nuevas experiencias, un tipo diferente de hospedaje en lugares hermosos y naturales.</p>
+                <a href="#contacto" class="cta-button">Comienza tu Proyecto</a>
             </div>
         </div>
     </section>
 
     <!-- Products -->
-    <section class="products" id="products">
+    <section class="products" id="productos">
         <div class="container">
-            <h2 class="section-title">Our products</h2>
+            <h2 class="section-title">Nuestros Modelos</h2>
+            <p class="section-subtitle">Diseños versátiles para cada necesidad</p>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" alt="Houses">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" alt="Casas">
                     <div class="product-overlay">
-                        <h3>Houses</h3>
-                        <p>4 models available</p>
+                        <h3>Casas Modulares</h3>
+                        <p>4 modelos disponibles</p>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" alt="Offices">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" alt="Estudios">
                     <div class="product-overlay">
-                        <h3>Offices</h3>
-                        <p>2 models available</p>
+                        <h3>Estudios & Oficinas</h3>
+                        <p>2 modelos disponibles</p>
                     </div>
                 </div>
                 <div class="product-card">
                     <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-saunas.jpg" alt="Saunas">
                     <div class="product-overlay">
-                        <h3>Saunas</h3>
-                        <p>3 models available</p>
+                        <h3>Saunas & Wellness</h3>
+                        <p>3 modelos disponibles</p>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" alt="Shells">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" alt="Estructuras">
                     <div class="product-overlay">
-                        <h3>Shells</h3>
-                        <p>Available in all models</p>
+                        <h3>Estructuras Base</h3>
+                        <p>Disponible en todos los modelos</p>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" alt="Bespoke">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" alt="Personalizado">
                     <div class="product-overlay">
-                        <h3>Bespoke</h3>
-                        <p>Custom-made</p>
+                        <h3>Diseño Personalizado</h3>
+                        <p>A medida de tus necesidades</p>
                     </div>
                 </div>
             </div>
@@ -437,70 +599,70 @@
     </section>
 
     <!-- Why SUÉ -->
-    <section class="why-ood" id="why">
+    <section class="why-sue" id="por-que">
         <div class="container">
-            <h2 class="section-title">WHY SUÉ?</h2>
+            <h2 class="section-title">¿Por Qué Elegir SUÉ?</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/046001738106a1a800a4fa3b70cedc04c8214b5b.jpg" alt="Design">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/046001738106a1a800a4fa3b70cedc04c8214b5b.jpg" alt="Diseño">
                     <div class="feature-content">
-                        <h3>Timeless Design. Unmatched Quality.</h3>
-                        <p>With its timeless Nordic design and full steel frame, our SUÉ Houses are built to stand the test of time. They stand firm in any climate and will keep you or your guests comfortably warm in winter and cool in summer.</p>
+                        <h3>Diseño Atemporal. Calidad Inigualable.</h3>
+                        <p>Con su diseño contemporáneo y estructura de acero completa, nuestras casas SUÉ están construidas para resistir el paso del tiempo. Se mantienen firmes en cualquier clima y mantendrán a tus huéspedes cómodamente cálidos en invierno y frescos en verano.</p>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/1b063b83cb1de80e29ecb5cde58084434ac9cfde.jpg" alt="Investment">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/1b063b83cb1de80e29ecb5cde58084434ac9cfde.jpg" alt="Inversión">
                     <div class="feature-content">
-                        <h3>An investment that creates returns</h3>
-                        <p>With one or multiple SUÉ Houses you can offer your guests unique, immersive experiences that will have them come back time and time again. Whether you already own a hospitality business or want to create something from scratch—SUÉ provides everything you need.</p>
+                        <h3>Una Inversión que Genera Retornos</h3>
+                        <p>Con una o múltiples casas SUÉ puedes ofrecer a tus huéspedes experiencias únicas e inmersivas que los harán volver una y otra vez. Ya sea que tengas un negocio de hospitalidad o quieras crear algo desde cero—SUÉ proporciona todo lo que necesitas.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery/Experiences -->
-    <section class="gallery" id="experiences">
+    <!-- Gallery/Projects -->
+    <section class="gallery" id="proyectos">
         <div class="container">
-            <h2 class="section-title">SUÉ Experiences Around the World</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
-                From Iceland's volcanoes to Italy's mountains. SUÉ Houses are providing new business opportunities in the hospitality sector.
+            <h2 class="section-title">Proyectos SUÉ Alrededor del Mundo</h2>
+            <p class="section-subtitle">
+                Desde las montañas hasta la costa. Las casas SUÉ están creando nuevas oportunidades de negocio en el sector de hospitalidad.
             </p>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-by-grautaneset-norway-(1).jpeg" alt="Norway">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-by-grautaneset-norway-(1).jpeg" alt="Proyecto 1">
                     <div class="gallery-caption">
-                        <p><strong>Tustna, Norway</strong><br>Grautaneset</p>
+                        <p><strong>Valle del Cauca, Colombia</strong><br>Casa Signature</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/big-monolith-iceland.jpg" alt="Iceland">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/big-monolith-iceland.jpg" alt="Proyecto 2">
                     <div class="gallery-caption">
-                        <p><strong>Iceland</strong><br>Monolith Experience</p>
+                        <p><strong>Eje Cafetero</strong><br>Experiencia Monolith</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/signature-house-italy-spino-fiorito.jpg" alt="Italy">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/signature-house-italy-spino-fiorito.jpg" alt="Proyecto 3">
                     <div class="gallery-caption">
-                        <p><strong>Italy</strong><br>Spino Fiorito</p>
+                        <p><strong>Santander</strong><br>Casa Premium</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/furu,-norway,-ood-mirror-house.jpg" alt="Norway Mirror">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/furu,-norway,-ood-mirror-house.jpg" alt="Proyecto 4">
                     <div class="gallery-caption">
-                        <p><strong>Furu, Norway</strong><br>Mirror House</p>
+                        <p><strong>Boyacá</strong><br>Casa Espejo</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-at-laheranna-estonia-magnus-heinmets.jpg" alt="Estonia">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-at-laheranna-estonia-magnus-heinmets.jpg" alt="Proyecto 5">
                     <div class="gallery-caption">
-                        <p><strong>Laheranna, Estonia</strong><br>Signature House</p>
+                        <p><strong>Costa Caribe</strong><br>Casa Signature</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-versso.jpg" alt="Versso">
+                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-versso.jpg" alt="Proyecto 6">
                     <div class="gallery-caption">
-                        <p><strong>SUÉ Versso</strong><br>Premium Experience</p>
+                        <p><strong>SUÉ Versso</strong><br>Experiencia Premium</p>
                     </div>
                 </div>
             </div>
@@ -508,15 +670,35 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer id="contacto">
         <div class="container">
-            <p><strong>Stay adventurous. Stay SUÉ.</strong></p>
-            <p>You want to have a genuine SUÉ experience? There are SUÉ Stays all over the world serving as the starting points for adventure, nature and memorable experiences while also providing premium comfort.</p>
-            <p style="margin-top: 2rem;">&copy; 2024 SUÉ House. All rights reserved.</p>
+            <p style="font-size: 2rem; margin-bottom: 1.5rem; font-weight: bold; color: #F4C430;">SUÉ</p>
+            <p><strong>Vive la experiencia. Vive SUÉ.</strong></p>
+            <p>¿Quieres tener una experiencia genuina SUÉ? Nuestras casas modulares están ubicadas en lugares hermosos, sirviendo como puntos de partida para aventuras, naturaleza y experiencias memorables mientras proporcionan comodidad premium.</p>
+            <a href="mailto:info@sue.com" class="cta-button" style="margin-top: 2rem;">Contáctanos</a>
+            <p style="margin-top: 3rem; color: #999;">&copy; 2024 SUÉ Casas Modulares. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('mobile');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -531,7 +713,7 @@
             });
         });
 
-        // Add scroll effect to header
+        // Header scroll effect
         let lastScroll = 0;
         const header = document.querySelector('header');
         
@@ -541,13 +723,13 @@
             if (currentScroll <= 0) {
                 header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
             } else {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
             }
             
             lastScroll = currentScroll;
         });
 
-        // Add animation on scroll for cards
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
