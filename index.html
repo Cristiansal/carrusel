@@ -88,6 +88,7 @@
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
+            z-index: 1001;
         }
 
         .hamburger span {
@@ -111,23 +112,31 @@
         }
 
         /* Mobile Menu */
-        .nav-links.mobile {
+        .nav-links.mobile-menu {
             position: fixed;
             top: 80px;
             left: -100%;
             width: 100%;
             height: calc(100vh - 80px);
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(26, 26, 26, 0.98);
             backdrop-filter: blur(10px);
             flex-direction: column;
             justify-content: flex-start;
             padding: 2rem;
             gap: 2rem;
             transition: left 0.3s ease;
+            overflow-y: auto;
+            z-index: 999;
         }
 
-        .nav-links.mobile.active {
+        .nav-links.mobile-menu.active {
             left: 0;
+        }
+
+        .nav-links.mobile-menu a {
+            color: #F4C430;
+            font-size: 1.5rem;
+            text-align: center;
         }
 
         /* Hero Section */
@@ -181,10 +190,10 @@
             }
         }
 
-        /* Business Opportunity Section */
-        .business-opportunity {
+        /* Products Section */
+        .products {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: white;
         }
 
         .container {
@@ -196,72 +205,28 @@
             font-size: 3rem;
             text-align: center;
             margin-bottom: 1rem;
-            color: #F4C430;
+            color: #1a1a1a;
             font-weight: 300;
         }
 
         .section-subtitle {
             text-align: center;
             font-size: 1.2rem;
-            color: #ccc;
+            color: #666;
             margin-bottom: 3rem;
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            border: 2px solid #D4A017;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: #F4C430;
-            box-shadow: 0 15px 40px rgba(244, 196, 48, 0.3);
-        }
-
-        .stat-card h3 {
-            font-size: 3.5rem;
-            color: #F4C430;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .stat-card p {
-            color: #ccc;
-            font-size: 1.1rem;
-        }
-
-        .description {
-            text-align: center;
-            font-size: 1.3rem;
-            line-height: 2;
-            color: #e0e0e0;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Products Section */
-        .products {
-            padding: 6rem 2rem;
-            background: white;
+        .carousel-container {
+            position: relative;
+            margin-top: 3rem;
+            overflow: hidden;
+            padding: 0 4rem;
         }
 
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            transition: transform 0.5s ease;
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .product-card {
@@ -269,15 +234,106 @@
             overflow: hidden;
             border-radius: 20px;
             cursor: pointer;
-            height: 450px;
+            height: 500px;
+            min-width: calc(100% - 4rem);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Carousel Controls */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(244, 196, 48, 0.9);
+            color: #1a1a1a;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .carousel-btn:hover {
+            background: #D4A017;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 0;
+        }
+
+        .carousel-btn.next {
+            right: 0;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #F4C430;
+            width: 30px;
+            border-radius: 6px;
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s ease, opacity 0.3s ease;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .product-card img.loading {
+            opacity: 0;
+        }
+
+        .product-card img.loaded {
+            opacity: 1;
+        }
+
+        /* Loading spinner */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(244, 196, 48, 0.3);
+            border-top-color: #F4C430;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 1;
+        }
+
+        .product-card img.loaded ~ .product-card::before {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .product-card:hover img {
@@ -311,145 +367,135 @@
             color: #F4C430;
         }
 
-        /* Why Section */
-        .why-sue {
+        /* Contact Section */
+        .contact {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
         }
 
-        .why-sue .section-title {
+        .contact .section-title {
             color: #F4C430;
         }
 
-        .feature-grid {
+        .contact .section-subtitle {
+            color: #ccc;
+        }
+
+        .contact-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
         }
 
-        .feature-card {
-            background: rgba(244, 196, 48, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(244, 196, 48, 0.2);
-            transition: all 0.3s;
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .feature-card:hover {
-            background: rgba(244, 196, 48, 0.1);
-            transform: translateY(-10px);
-            border-color: #F4C430;
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .feature-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .feature-content {
-            padding: 2.5rem;
-        }
-
-        .feature-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .contact-item h3 {
             color: #F4C430;
+            font-size: 1.5rem;
+            font-weight: 400;
         }
 
-        .feature-content p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.8;
+        .contact-item p {
+            color: #ccc;
             font-size: 1.1rem;
         }
 
-        /* Gallery Section */
-        .gallery {
-            padding: 6rem 2rem;
-            background: #f8f9fa;
+        .contact-item a {
+            color: #F4C430;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+        .contact-item a:hover {
+            color: #D4A017;
         }
 
-        .gallery-item {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        .contact-form {
+            background: rgba(244, 196, 48, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(244, 196, 48, 0.2);
         }
 
-        .gallery-item img {
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #F4C430;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            filter: brightness(0.9);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.2);
-            filter: brightness(1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26, 26, 26, 0.95), rgba(212, 160, 23, 0.8));
+            padding: 1rem;
+            border: 1px solid rgba(244, 196, 48, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
             color: white;
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
         }
 
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #F4C430;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(244, 196, 48, 0.4);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(244, 196, 48, 0.6);
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 2rem;
             text-align: center;
             border-top: 3px solid #D4A017;
         }
 
         footer p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
-            color: #1a1a1a;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(244, 196, 48, 0.4);
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(244, 196, 48, 0.6);
+            color: #999;
         }
 
         /* Responsive */
@@ -458,11 +504,11 @@
                 display: none;
             }
 
-            .hamburger {
+            .nav-links.mobile-menu {
                 display: flex;
             }
 
-            .nav-links.mobile {
+            .hamburger {
                 display: flex;
             }
 
@@ -474,13 +520,23 @@
                 font-size: 1.2rem;
             }
 
-            .feature-grid,
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-
             .section-title {
                 font-size: 2.2rem;
+            }
+
+            .carousel-container {
+                padding: 0 3rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .product-card {
+                min-width: 100%;
+                height: 400px;
             }
         }
 
@@ -496,6 +552,16 @@
             .logo {
                 font-size: 2rem;
             }
+
+            .carousel-container {
+                padding: 0 2.5rem;
+            }
+
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -504,10 +570,8 @@
     <header>
         <nav>
             <div class="logo">SUÉ</div>
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links mobile-menu" id="navLinks">
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#por-que">Por Qué SUÉ</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -526,180 +590,287 @@
         </div>
     </section>
 
-    <!-- Business Opportunity -->
-    <section class="business-opportunity">
-        <div class="container">
-            <h2 class="section-title">Una oportunidad de inversión inteligente</h2>
-            <p class="section-subtitle">Las casas modulares prefabricadas representan el futuro de la construcción</p>
-            <div class="stats">
-                <div class="stat-card">
-                    <h3>315€</h3>
-                    <p>Tarifa promedio por noche</p>
-                </div>
-                <div class="stat-card">
-                    <h3>72%</h3>
-                    <p>Tasa de ocupación promedio</p>
-                </div>
-                <div class="stat-card">
-                    <h3>>25%</h3>
-                    <p>ROI promedio anual</p>
-                </div>
-            </div>
-            <div class="description">
-                <p>Convierte tu terreno en un negocio próspero. Crea experiencias únicas y genera ingresos pasivos.</p>
-                <p>Las personas buscan nuevas experiencias, un tipo diferente de hospedaje en lugares hermosos y naturales.</p>
-                <a href="#contacto" class="cta-button">Comienza tu Proyecto</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Products -->
     <section class="products" id="productos">
         <div class="container">
             <h2 class="section-title">Nuestros Modelos</h2>
             <p class="section-subtitle">Diseños versátiles para cada necesidad</p>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" alt="Casas">
-                    <div class="product-overlay">
-                        <h3>Casas Modulares</h3>
-                        <p>4 modelos disponibles</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+                
+                <div class="product-grid" id="productCarousel">
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" 
+                             alt="Casas" 
+                             loading="eager"
+                             class="loading"
+                             onload="this.classList.remove('loading'); this.classList.add('loaded');">
+                        <div class="product-overlay">
+                            <h3>Casas Modulares</h3>
+                            <p>4 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" 
+                             alt="Estudios"
+                             loading="lazy"
+                             class="loading"
+                             onload="this.classList.remove('loading'); this.classList.add('loaded');">
+                        <div class="product-overlay">
+                            <h3>Estudios & Oficinas</h3>
+                            <p>2 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-saunas.jpg" 
+                             alt="Saunas"
+                             loading="lazy"
+                             class="loading"
+                             onload="this.classList.remove('loading'); this.classList.add('loaded');">
+                        <div class="product-overlay">
+                            <h3>Saunas & Wellness</h3>
+                            <p>3 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" 
+                             alt="Estructuras"
+                             loading="lazy"
+                             class="loading"
+                             onload="this.classList.remove('loading'); this.classList.add('loaded');">
+                        <div class="product-overlay">
+                            <h3>Estructuras Base</h3>
+                            <p>Disponible en todos los modelos</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" 
+                             alt="Personalizado"
+                             loading="lazy"
+                             class="loading"
+                             onload="this.classList.remove('loading'); this.classList.add('loaded');">
+                        <div class="product-overlay">
+                            <h3>Diseño Personalizado</h3>
+                            <p>A medida de tus necesidades</p>
+                        </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" alt="Estudios">
-                    <div class="product-overlay">
-                        <h3>Estudios & Oficinas</h3>
-                        <p>2 modelos disponibles</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-saunas.jpg" alt="Saunas">
-                    <div class="product-overlay">
-                        <h3>Saunas & Wellness</h3>
-                        <p>3 modelos disponibles</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" alt="Estructuras">
-                    <div class="product-overlay">
-                        <h3>Estructuras Base</h3>
-                        <p>Disponible en todos los modelos</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" alt="Personalizado">
-                    <div class="product-overlay">
-                        <h3>Diseño Personalizado</h3>
-                        <p>A medida de tus necesidades</p>
-                    </div>
-                </div>
+                
+                <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
             </div>
+            
+            <div class="carousel-indicators" id="indicators"></div>
         </div>
     </section>
 
-    <!-- Why SUÉ -->
-    <section class="why-sue" id="por-que">
-        <div class="container">
-            <h2 class="section-title">¿Por Qué Elegir SUÉ?</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/046001738106a1a800a4fa3b70cedc04c8214b5b.jpg" alt="Diseño">
-                    <div class="feature-content">
-                        <h3>Diseño Atemporal. Calidad Inigualable.</h3>
-                        <p>Con su diseño contemporáneo y estructura de acero completa, nuestras casas SUÉ están construidas para resistir el paso del tiempo. Se mantienen firmes en cualquier clima y mantendrán a tus huéspedes cómodamente cálidos en invierno y frescos en verano.</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/1b063b83cb1de80e29ecb5cde58084434ac9cfde.jpg" alt="Inversión">
-                    <div class="feature-content">
-                        <h3>Una Inversión que Genera Retornos</h3>
-                        <p>Con una o múltiples casas SUÉ puedes ofrecer a tus huéspedes experiencias únicas e inmersivas que los harán volver una y otra vez. Ya sea que tengas un negocio de hospitalidad o quieras crear algo desde cero—SUÉ proporciona todo lo que necesitas.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
-    <!-- Gallery/Projects -->
-    <section class="gallery" id="proyectos">
+    <!-- Contact -->
+    <section class="contact" id="contacto">
         <div class="container">
-            <h2 class="section-title">Proyectos SUÉ Alrededor del Mundo</h2>
-            <p class="section-subtitle">
-                Desde las montañas hasta la costa. Las casas SUÉ están creando nuevas oportunidades de negocio en el sector de hospitalidad.
-            </p>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-by-grautaneset-norway-(1).jpeg" alt="Proyecto 1">
-                    <div class="gallery-caption">
-                        <p><strong>Valle del Cauca, Colombia</strong><br>Casa Signature</p>
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Estamos aquí para ayudarte a hacer realidad tu proyecto</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@sue.com">info@sue.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Teléfono</h3>
+                        <p><a href="tel:+573001234567">+57 300 123 4567</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Ubicación</h3>
+                        <p>Bogotá, Colombia</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Horario</h3>
+                        <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/big-monolith-iceland.jpg" alt="Proyecto 2">
-                    <div class="gallery-caption">
-                        <p><strong>Eje Cafetero</strong><br>Experiencia Monolith</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/signature-house-italy-spino-fiorito.jpg" alt="Proyecto 3">
-                    <div class="gallery-caption">
-                        <p><strong>Santander</strong><br>Casa Premium</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/furu,-norway,-ood-mirror-house.jpg" alt="Proyecto 4">
-                    <div class="gallery-caption">
-                        <p><strong>Boyacá</strong><br>Casa Espejo</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-signature-house-ood-at-laheranna-estonia-magnus-heinmets.jpg" alt="Proyecto 5">
-                    <div class="gallery-caption">
-                        <p><strong>Costa Caribe</strong><br>Casa Signature</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://dvffu2vkcvqdn.cloudfront.net/ood-versso.jpg" alt="Proyecto 6">
-                    <div class="gallery-caption">
-                        <p><strong>SUÉ Versso</strong><br>Experiencia Premium</p>
-                    </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contacto">
-        <div class="container">
-            <p style="font-size: 2rem; margin-bottom: 1.5rem; font-weight: bold; color: #F4C430;">SUÉ</p>
-            <p><strong>Vive la experiencia. Vive SUÉ.</strong></p>
-            <p>¿Quieres tener una experiencia genuina SUÉ? Nuestras casas modulares están ubicadas en lugares hermosos, sirviendo como puntos de partida para aventuras, naturaleza y experiencias memorables mientras proporcionan comodidad premium.</p>
-            <a href="mailto:info@sue.com" class="cta-button" style="margin-top: 2rem;">Contáctanos</a>
-            <p style="margin-top: 3rem; color: #999;">&copy; 2024 SUÉ Casas Modulares. Todos los derechos reservados.</p>
-        </div>
+    <footer>
+        <p>&copy; 2024 SUÉ Casas Modulares. Todos los derechos reservados.</p>
     </footer>
 
     <script>
+        // Preload next images when carousel moves
+        function preloadNextImages() {
+            const nextSlide = (currentSlide + 1) % totalSlides;
+            const prevSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            
+            const nextImg = slides[nextSlide].querySelector('img');
+            const prevImg = slides[prevSlide].querySelector('img');
+            
+            if (nextImg && !nextImg.complete) {
+                nextImg.loading = 'eager';
+            }
+            if (prevImg && !prevImg.complete) {
+                prevImg.loading = 'eager';
+            }
+        }
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const carousel = document.getElementById('productCarousel');
+        const slides = carousel.querySelectorAll('.product-card');
+        const totalSlides = slides.length;
+        const indicatorsContainer = document.getElementById('indicators');
+
+        // Create indicators
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        function updateCarousel() {
+            const offset = -currentSlide * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+            
+            // Update indicators
+            const indicators = indicatorsContainer.querySelectorAll('.indicator');
+            indicators.forEach((ind, index) => {
+                if (index === currentSlide) {
+                    ind.classList.add('active');
+                } else {
+                    ind.classList.remove('active');
+                }
+            });
+            
+            // Preload adjacent images
+            preloadNextImages();
+        }
+
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+            
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel
+        let autoplayInterval = setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // Pause autoplay on hover
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') moveCarousel(-1);
+            if (e.key === 'ArrowRight') moveCarousel(1);
+        });
+
+        // Touch/Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) moveCarousel(1);
+            if (touchEndX > touchStartX + 50) moveCarousel(-1);
+        }
+
+        // Preload first few images on page load
+        window.addEventListener('load', () => {
+            preloadNextImages();
+        });
+
         // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
+        const body = document.body;
 
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
             hamburger.classList.toggle('active');
-            navLinks.classList.toggle('mobile');
             navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
         });
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                body.style.overflow = 'auto';
             });
         });
 
-        // Smooth scrolling for navigation links
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -714,41 +885,20 @@
         });
 
         // Header scroll effect
-        let lastScroll = 0;
         const header = document.querySelector('header');
-        
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
+            if (window.pageYOffset > 0) {
                 header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
             }
-            
-            lastScroll = currentScroll;
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-card, .product-card, .feature-card, .gallery-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+            e.target.reset();
         });
     </script>
 </body>
