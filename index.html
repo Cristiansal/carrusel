@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUÉ – Casas Modulares Prefabricadas | Diseño y Sostenibilidad</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <div class="logo-container"> 
+            <div class="logo">    <img src="logo sue.jpg" alt="Logo de SUÉ" class="logo-img">
+</div>           
+            </div>
+
+            <ul class="nav-links mobile-menu" id="navLinks">
+                <li><a href="#productos">Modelos</a></li>
+                <li><a href="#procesos">Procesos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Construye el futuro con <strong>SUÉ</strong></h1>
+            <p>Casas modulares prefabricadas que transforman tu visión en realidad. Diseño innovador, construcción sostenible, entrega rápida.</p>
+        </div>
+    </section>
+
+
+
+
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Modelos</h2>
+            <p class="section-subtitle">Diseños versátiles para cada necesidad</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel('productCarousel', -1)">‹</button>
+                
+                <div class="product-grid" id="productCarousel">
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-house.jpg" alt="Casas Modulares" loading="eager">
+                        <div class="product-overlay">
+                            <h3>Casas Modulares</h3>
+                            <p>4 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-studios.jpg" alt="Estudios y Oficinas" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Estudios & Oficinas</h3>
+                            <p>2 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-saunas.jpg" alt="Saunas y Wellness" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Saunas & Wellness</h3>
+                            <p>3 modelos disponibles</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/shells-category-hero.jpg" alt="Estructuras Base" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Estructuras Base</h3>
+                            <p>Disponible en todos los modelos</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/products/category-hero-bespoke.jpg" alt="Diseño Personalizado" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Diseño Personalizado</h3>
+                            <p>A medida de tus necesidades</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next" onclick="moveCarousel('productCarousel', 1)">›</button>
+            </div>
+            
+            <div class="carousel-indicators" id="productIndicators"></div>
+        </div>
+    </section>
+
+    <section class="products" id="procesos">
+        <div class="container">
+            <h2 class="section-title">El Proceso SUÉ</h2>
+            <p class="section-subtitle">Del concepto a la llave: La eficiencia de la construcción modular</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel('processCarousel', -1)">‹</button>
+                
+                <div class="product-grid" id="processCarousel">
+                    
+                    <div class="product-card">
+                        <img src="b.jpg" alt="Diseño Inteligente" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Construccion en Bloquelon</h3>
+                            <p>Ingeniería de precisión y arquitectura bioclimática</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="c.jpg" alt="Fabricación en Taller" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Construccion en placas de concreto</h3>
+                            <p>Construcción simultánea en ambiente controlado</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="f.jpg" alt="Ensamblaje y Obra" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Construccion Modular</h3>
+                            <p>Módulos instalados en su terreno en días, no meses</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="t.jpg" alt="Entrega Final" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Construccion tradicionalL</h3>
+                            <p>Su vivienda lista para ser habitada (Llave en mano)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next" onclick="moveCarousel('processCarousel', 1)">›</button>
+            </div>
+            
+            <div class="carousel-indicators" id="processIndicators"></div>
+        </div>
+    </section>
+
+        <section class="benefits" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Beneficios Clave</h2>
+            <p class="section-subtitle">Lo que obtienes al elegir la construcción modular de SUÉ</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel('benefitsCarousel', -1)">‹</button>
+                
+                <div class="product-grid" id="benefitsCarousel">
+                    
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/benefits/construction_quality.jpg" alt="Calidad Garantizada" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Calidad Superior</h3>
+                            <p>Construcción en taller controlado sin depender del clima.</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/benefits/speed_time.jpg" alt="Velocidad y Rapidez" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Entrega Rápida</h3>
+                            <p>Disfruta de tu casa en una fracción del tiempo de la construcción tradicional.</p>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/benefits/waste_reduction.jpg" alt="Sostenibilidad" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Mínimo Impacto</h3>
+                            <p>Reducción de residuos de construcción en tu sitio de obra.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://dvffu2vkcvqdn.cloudfront.net/benefits/cost_control.jpg" alt="Control de Costos" loading="lazy">
+                        <div class="product-overlay">
+                            <h3>Precio Fijo</h3>
+                            <p>Costo cerrado y sin sorpresas, garantizando tu inversión.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next" onclick="moveCarousel('benefitsCarousel', 1)">›</button>
+            </div>
+            
+            <div class="carousel-indicators" id="benefitsIndicators"></div>
+        </div>
+    </section>
+
+    
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Estamos aquí para ayudarte a hacer realidad tu proyecto</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@sue.com">info@sue.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Teléfono</h3>
+                        <p><a href="tel:+573001234567">+57 300 123 4567</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Ubicación</h3>
+                        <p>Bogotá, Colombia</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Horario</h3>
+                        <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SUÉ Casas Modulares. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+/* ----------------------------------------------------------------- */
+/* --- Paleta de Colores y Variables --- */
+/* ----------------------------------------------------------------- */
+:root {
+    --color-primary-gold: #D4A017; 
+    --color-acento-claro: #F4C430;
+    --color-neutro-oscuro: #333333;
+    --color-neutro-claro: #666666;
+    --color-fondo-suave: #f8f8f8;
+    --color-fondo-oscuro: #1a1a1a;
+}
+
+/* ----------------------------------------------------------------- */
+/* --- Reset y Tipografía Base --- */
+/* ----------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--color-neutro-oscuro);
+    overflow-x: hidden;
+    background-color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Títulos de Sección */
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-neutro-oscuro);
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-neutro-claro);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+/* ----------------------------------------------------------------- */
+/* --- HEADER Y NAVEGACIÓN --- */
+/* ----------------------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+/* --- Estilos para la imagen del logo --- */
+.logo-img {
+    height: 100px; /* Ajusta este valor según el tamaño deseado de tu logo */
+    width: auto; /* Mantiene la proporción de la imagen */
+    vertical-align: middle; /* Alinea verticalmente con otros elementos si los hubiera */
+    padding: 3px 0; /* Pequeño padding para asegurar espacio si es necesario */
+}
+
+/* Ajuste para el modo móvil si el logo es demasiado grande */
+@media (max-width: 968px) {
+    .logo-img {
+        height: 45px; /* Un poco más pequeño en pantallas móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        height: 40px; /* Tamaño aún más pequeño en móviles muy pequeños */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-primary-gold);
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-neutro-oscuro);
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-acento-claro), var(--color-primary-gold));
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary-gold);
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: var(--color-primary-gold);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+.nav-links.mobile-menu {
+    position: fixed;
+    top: 70px; /* Ajustar basado en el padding de nav */
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(26, 26, 26, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.nav-links.mobile-menu.active {
+    left: 0;
+}
+
+.nav-links.mobile-menu a {
+    color: var(--color-acento-claro);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* --- HERO SECTION --- */
+/* ----------------------------------------------------------------- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://dvffu2vkcvqdn.cloudfront.net/hero_oodhouse_poster.jpg'); /* Imagen Placeholder */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-top: 70px; /* Espacio para el header fijo */
+}
+
+.hero-content {
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero h1 strong {
+    font-weight: 700;
+    color: var(--color-acento-claro);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    animation: fadeInUp 1s ease 0.2s backwards;
+    line-height: 1.8;
+    font-family: 'Roboto', sans-serif;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------------------------------------------- */
+/* --- SECCIÓN 3 PILARES (VALOR SUÉ - ESTILO DVELE) --- */
+/* ----------------------------------------------------------------- */
+.pillars-section {
+    padding: 80px 20px;
+    background-color: var(--color-fondo-suave); 
+    text-align: center;
+    width: 100%;
+}
+
+.pillars-section .section-title {
+    color: var(--color-neutro-oscuro); 
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+
+.pillars-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around;
+    gap: 40px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pillar-item {
+    flex: 1; 
+    min-width: 280px; 
+    max-width: 350px;
+    text-align: left;
+    padding: 30px;
+    background-color: white; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pillar-icon {
+    color: var(--color-primary-gold); 
+    font-size: 45px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.pillar-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--color-neutro-oscuro); 
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.pillar-item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: var(--color-neutro-claro);
+    line-height: 1.7;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* --- SECCIONES DE CARRUSEL (PRODUCTS, PROCESSES, BENEFITS) --- */
+/* ----------------------------------------------------------------- */
+.products, .benefits {
+    padding: 6rem 0;
+    background: white;
+}
+.benefits {
+    background-color: var(--color-fondo-suave); /* Fondo distinto para los beneficios */
+}
+
+.carousel-container {
+    position: relative;
+    margin-top: 3rem;
+    overflow: hidden;
+    padding: 0 4rem; /* Espacio para los botones */
+}
+
+.product-grid {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 2rem;
+}
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 500px;
+    min-width: 100%; /* Cada card toma el ancho completo para el desplazamiento */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Controles de Carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(244, 196, 48, 0.9);
+    color: var(--color-neutro-oscuro);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-btn:hover {
+    background: var(--color-primary-gold);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+/* Indicadores */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicator.active {
+    background: var(--color-acento-claro);
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Tarjetas de Producto/Proceso */
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, opacity 0.3s ease;
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+}
+
+/* Efecto Hover y Overlay */
+.product-card:hover img { transform: scale(1.15); }
+
+.product-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 2.5rem;
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-overlay {
+    transform: translateY(0);
+}
+
+.product-overlay h3 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.product-overlay p {
+    font-size: 1.1rem;
+    color: var(--color-acento-claro);
+}
+
+/* Estilos específicos para los beneficios (imágenes más pequeñas) */
+#benefitsCarousel .product-card {
+    height: 400px; /* Reducir la altura para que encajen mejor */
+}
+
+/* ----------------------------------------------------------------- */
+/* --- CONTACTO --- */
+/* ----------------------------------------------------------------- */
+.contact {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+}
+
+.contact .section-title { color: var(--color-acento-claro); }
+.contact .section-subtitle { color: #ccc; }
+
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-item h3 {
+    color: var(--color-acento-claro);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.contact-item p { color: #ccc; font-size: 1.1rem; }
+.contact-item a { color: var(--color-acento-claro); text-decoration: none; transition: color 0.3s; }
+.contact-item a:hover { color: var(--color-primary-gold); }
+
+.contact-form {
+    background: rgba(244, 196, 48, 0.05);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(244, 196, 48, 0.2);
+}
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; color: var(--color-acento-claro); font-weight: 500; }
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(244, 196, 48, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus { outline: none; border-color: var(--color-acento-claro); background: rgba(255, 255, 255, 0.1); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+.submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--color-acento-claro) 0%, var(--color-primary-gold) 100%);
+    color: var(--color-neutro-oscuro);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(244, 196, 48, 0.4);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, var(--color-primary-gold) 0%, #B8860B 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(244, 196, 48, 0.6);
+}
+
+/* ----------------------------------------------------------------- */
+/* --- FOOTER --- */
+/* ----------------------------------------------------------------- */
+footer {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-top: 3px solid var(--color-primary-gold);
+}
+
+footer p { color: #999; }
+
+/* ----------------------------------------------------------------- */
+/* --- RESPONSIVE / MOBILE --- */
+/* ----------------------------------------------------------------- */
+@media (max-width: 968px) {
+    .nav-links { display: none; }
+    .nav-links.mobile-menu { display: flex; }
+    .hamburger { display: flex; }
+
+    .hero h1 { font-size: 2.8rem; }
+    .hero p { font-size: 1.2rem; }
+    .section-title { font-size: 2.2rem; }
+
+    .carousel-container { padding: 0 3rem; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+    .product-card { min-width: 100%; height: 400px; }
+
+    /* 3 Pilares Responsive */
+    .pillars-container { flex-direction: column; align-items: center; }
+    .pillar-item { max-width: 90%; }
+    .pillars-section .section-title { font-size: 28px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    nav { padding: 1rem; }
+    .logo { font-size: 2rem; }
+    .carousel-container { padding: 0 2.5rem; }
+    .carousel-btn { width: 35px; height: 35px; font-size: 1rem; }
+    .product-overlay h3 { font-size: 1.5rem; }
+}
